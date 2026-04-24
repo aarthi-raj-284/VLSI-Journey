@@ -1,0 +1,20 @@
+module shift (
+    input wire clk,
+    input wire reset,
+    input wire load,
+    input wire [3:0] data_in,
+    output reg [3:0] q
+);
+
+always @(posedge clk or posedge reset) begin
+    if (reset)
+        q <= 4'b0000;
+
+    else if (load)
+        q <= data_in;
+
+    else
+        q <= q >> 1;   // Right Shift
+end
+
+endmodule
